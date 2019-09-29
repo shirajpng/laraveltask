@@ -1,100 +1,123 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout.layout')
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+@section('content')
+    <div class="container">
+        {!! Form::open(['method' => 'post', 'route' => 'store','class' => 'form-horizontal']) !!}
+        {!! csrf_field() !!}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('name', 'Name :',['class' => 'control-label col-md-4']) !!}
+                    <div class="col-md-8">
+                        {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'enter name...', 'required']) !!}
+                        @if ($errors->any())
+                            <ul style="color: red">* {!! $errors->first('name') !!}</ul>
                         @endif
-                    @endauth
-                </div>
-            @endif
+                    </div>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('gender', 'Gender :',['class' => 'control-label col-md-4']) !!}
+                    <div class="col-md-8">
+                        {!! Form::radio('gender','M') !!} Male &nbsp;
+                        {!! Form::radio('gender','F') !!} Female &nbsp;
+                        {!! Form::radio('gender','Others') !!} Others
+                    </div>
+                    @if ($errors->any())
+                        <ul style="color: red">* {!! $errors->first('gender') !!}</ul>
+                    @endif
                 </div>
             </div>
         </div>
-    </body>
-</html>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('phone', 'Phone :',['class' => 'control-label col-md-4']) !!}
+                    <div class="col-md-8">
+                        {!! Form::number('phone', null, ['class' => 'form-control', 'placeholder' => 'enter phone...', 'required']) !!}
+                    </div>
+                    @if ($errors->any())
+                        <ul style="color: red">* {!! $errors->first('phone') !!}</ul>
+                    @endif
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('email', 'Email :',['class' => 'control-label col-md-4']) !!}
+                    <div class="col-md-8">
+                        {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'enter email...', 'required']) !!}
+                    </div>
+                    @if ($errors->any())
+                        <ul style="color: red">* {!! $errors->first('email') !!}</ul>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('address', 'Address :',['class' => 'control-label col-md-4']) !!}
+                    <div class="col-md-8">
+                        {!! Form::text('address', null, ['class' => 'form-control', 'placeholder' => 'enter address...', 'required']) !!}
+                    </div>
+                    @if ($errors->any())
+                        <ul style="color: red">* {!! $errors->first('address') !!}</ul>
+                    @endif
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('nationality', 'Nationality :',['class' => 'control-label col-md-4']) !!}
+                    <div class="col-md-8">
+                        {!! Form::text('nationality', null, ['class' => 'form-control', 'placeholder' => 'enter nationality...', 'required']) !!}
+                    </div>
+                    @if ($errors->any())
+                        <ul style="color: red">* {!! $errors->first('nationality') !!}</ul>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('dob', 'Date of Birth :',['class' => 'control-label col-md-4']) !!}
+                    <div class="col-md-8">
+                        {!! Form::date('dob', null, ['class' => 'form-control', 'required']) !!}
+                    </div>
+                    @if ($errors->any())
+                        <ul style="color: red">* {!! $errors->first('dob') !!}</ul>
+                    @endif
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('education', 'Education :',['class' => 'control-label col-md-4']) !!}
+                    <div class="col-md-8">
+                        {!! Form::text('education', null, ['class' => 'form-control', 'placeholder' => 'enter education background...']) !!}
+                    </div>
+                    @if ($errors->any())
+                        <ul style="color: red">* {!! $errors->first('education') !!}</ul>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('pref_contact', 'Preferred mode of contact :',['class' => 'col-md-4 control-label']) !!}
+                    <div class="col-md-8">
+                        {!! Form::select('pref_contact',['none' => 'None','email'=>'Email','phone' =>'Phone'], null, ['class' => 'form-control']) !!}
+                    </div>
+                    @if ($errors->any())
+                        <ul style="color: red">* {!! $errors->first('contact') !!}</ul>
+                    @endif
+                </div>
+            </div>
+        </div>
+        {!! Form::submit('Submit', ['class' => 'btn btn-success']) !!}
+
+        {!! Form::close() !!}
+    </div>
+@endsection
