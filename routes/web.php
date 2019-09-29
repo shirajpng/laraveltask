@@ -15,3 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::post('store','TestController@store')->name('store');
+Route::get('list', 'TestController@list');
