@@ -15,9 +15,7 @@
 Route::get('/', 'UserController@index');
 
 //add new user
-Route::get('/add', function () {
-    return view('user.create');
-});
+Route::get('/add','UserController@create');
 
 //store users
 Route::post('/store','UserController@store')->name('store');

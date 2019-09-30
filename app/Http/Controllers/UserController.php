@@ -8,7 +8,12 @@ use Illuminate\Support\Collection;
 
 class UserController extends Controller
 {
-    //show all users in a paginated format
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(){
         $users = [];
         $headings = [];
@@ -41,6 +46,21 @@ class UserController extends Controller
         return view('user.index', compact('headings', 'users'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('user.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     * @param  Request $request
+     * @return Response
+     */
     //store user to file
     public function store(Request $request){
 
@@ -62,7 +82,12 @@ class UserController extends Controller
         );
     }
 
-    //show individual user details
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id){
 
         //open file for reading
