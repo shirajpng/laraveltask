@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 
 class UserController extends Controller
 {
+    //show all users in a paginated format
     public function index(){
         $users = [];
         $headings = [];
@@ -39,6 +40,8 @@ class UserController extends Controller
         }
         return view('user.index', compact('headings', 'users'));
     }
+
+    //store user to file
     public function store(Request $request){
 
         $user = $request->except('_token');
@@ -59,6 +62,7 @@ class UserController extends Controller
         );
     }
 
+    //show individual user details
     public function show($id){
 
         //open file for reading
