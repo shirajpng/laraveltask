@@ -11,8 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'TestController@index');
+
+Route::get('/add', function () {
+    return view('addUser');
 });
 Route::post('store','TestController@store')->name('store');
-Route::get('list', 'TestController@list');
+Route::get('/user/{id}','TestController@show');
