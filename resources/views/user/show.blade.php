@@ -6,8 +6,8 @@
             <a href="/" style="text-decoration: none;">Go Back</a>
         </div>
         <ul>
-            @foreach($heads as $index => $head)
-            <li>{{$head}} : {{$result[$index]}}</li>
+            @foreach($headings as $index => $head)
+            <li>{{$head}} : {{$user[$index]}}</li>
             @endforeach
         </ul>
     </div>

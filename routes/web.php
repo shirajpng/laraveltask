@@ -11,10 +11,16 @@
 |
 */
 
-Route::get('/', 'TestController@index');
+//get list of user
+Route::get('/', 'UserController@index');
 
+//add new user
 Route::get('/add', function () {
-    return view('addUser');
+    return view('user.create');
 });
-Route::post('store','TestController@store')->name('store');
-Route::get('/user/{id}','TestController@show');
+
+//store users
+Route::post('/store','UserController@store')->name('store');
+
+//get each user info
+Route::get('/user/{id}','UserController@show');

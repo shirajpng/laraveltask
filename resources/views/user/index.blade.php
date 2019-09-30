@@ -1,17 +1,16 @@
 @extends('layout.layout')
 
 @section('content')
-    <div class="container">
-        <div class="text-right">
-        <a href="{{url('/add')}}" class="btn btn-success btn-lg">Add User</a>
+        <div style="margin-bottom: 20px">
+        <a href="{{url('/add')}}" class="btn btn-success">Add User</a>
         </div>
-        {{$rows->links()}}
-        <table class="table">
+        {{$users->links()}}
+        <table class="table table-bordered">
             <thead>
             <tr>
                 <th>SN</th>
-                @foreach($keys as $key)
-                    <th>{{ucfirst($key)}}</th>
+                @foreach($headings as $heading)
+                    <th>{{ucfirst($heading)}}</th>
                 @endforeach
                 <th>Action</th>
 
@@ -19,10 +18,10 @@
             </thead>
             <tbody>
 
-            @foreach($rows as $index => $row)
+            @foreach($users as $index => $user)
             <tr>
                 <td>{{$index +1}}</td>
-                @foreach($row as $column)
+                @foreach($user as $column)
                     <td>{{$column}}</td>
                 @endforeach
                 <td><a href="{{url('/user/'.++$index)}}"><button class="btn btn-primary">Show</button></a></td>
@@ -30,10 +29,5 @@
             @endforeach
             </tbody>
         </table>
-
-    </div>
-@endsection
-
-@section('script')
 
 @endsection
